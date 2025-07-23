@@ -3,10 +3,14 @@ const dotenv = require('dotenv')
 dotenv.config()
 const PORT = 3000 || process.env.PORT;
 const app = express()
+const path=require('path')
 
+app.use(express.static(path.join(__dirname,'./Frontend/dist')))
 app.get("/",(req,res)=>{
-    res.send("<h1>Sanika Dattu Mandlik</h1>")
+    res.sendFile(path.join(__dirname,"./Frontend/dist","index.html"))
 })
+
+
 app.get("/api/data",(req,res)=>{
     const data =[{
         "name":"Sanika",
